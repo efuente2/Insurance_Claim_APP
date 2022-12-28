@@ -1,4 +1,4 @@
-package com.mtit.microservice.insuranceservice.insuranceservice.model;
+package com.mtit.microservice.documentservice.documentservice.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

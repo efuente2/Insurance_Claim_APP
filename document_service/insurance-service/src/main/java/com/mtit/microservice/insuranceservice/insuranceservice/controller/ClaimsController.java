@@ -1,8 +1,7 @@
-package com.mtit.microservice.insuranceservice.insuranceservice.controller;
+package com.mtit.microservice.documentservice.documentservice.controller;
 
-import com.mtit.microservice.insuranceservice.insuranceservice.dto.ClaimsResponse;
-import com.mtit.microservice.insuranceservice.insuranceservice.dto.ClaimsRequest;
-import com.mtit.microservice.insuranceservice.insuranceservice.service.ClaimService;
+import com.mtit.microservice.documentservice.documentservice.dto.ClaimsResponse;
+import com.mtit.microservice.documentservice.documentservice.dto.ClaimsRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

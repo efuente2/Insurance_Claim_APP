@@ -1,4 +1,4 @@
-package com.mtit.microservice.insuranceservice.insuranceservice.config;
+package com.mtit.microservice.documentservice.documentservice.entity;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

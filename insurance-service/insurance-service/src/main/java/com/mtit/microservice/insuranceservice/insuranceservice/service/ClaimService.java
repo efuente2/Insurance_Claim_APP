@@ -1,10 +1,10 @@
-package com.mtit.microservice.insuranceservice.insuranceservice.service;
+package com.mtit.microservice.documentservice.documentservice.service;
 
-import com.mtit.microservice.insuranceservice.insuranceservice.dto.ClaimsResponse;
-import com.mtit.microservice.insuranceservice.insuranceservice.model.Claim;
-import com.mtit.microservice.insuranceservice.insuranceservice.repository.ClaimRepositroy;
-import com.mtit.microservice.insuranceservice.insuranceservice.dto.ClaimsRequest;
-import com.mtit.microservice.insuranceservice.insuranceservice.dto.ProductResponce;
+import com.mtit.microservice.documentservice.documentservice.dto.ClaimsResponse;
+import com.mtit.microservice.documentservice.documentservice.util.Claim;
+import com.mtit.microservice.documentservice.documentservice.repository.ClaimRepositroy;
+import com.mtit.microservice.documentservice.documentservice.dto.ClaimsRequest;
+import com.mtit.microservice.documentservice.documentservice.dto.ProductResponce;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

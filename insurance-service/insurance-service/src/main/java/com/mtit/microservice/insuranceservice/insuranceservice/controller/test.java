@@ -1,4 +1,4 @@
-package com.mtit.microservice.insuranceservice.insuranceservice.controller;
+package com.mtit.microservice.documentservice.documentservice.controller;
 
 public class test {
 

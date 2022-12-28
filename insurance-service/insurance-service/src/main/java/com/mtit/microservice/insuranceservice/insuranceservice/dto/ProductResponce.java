@@ -1,4 +1,4 @@
-package com.mtit.microservice.insuranceservice.insuranceservice.dto;
+package com.mtit.microservice.documentservice.documentservice.dto;
 
 
 import lombok.AllArgsConstructor;

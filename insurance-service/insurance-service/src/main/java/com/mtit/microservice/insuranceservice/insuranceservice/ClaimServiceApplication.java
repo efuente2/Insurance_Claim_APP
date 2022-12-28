@@ -1,4 +1,4 @@
-package com.mtit.microservice.insuranceservice.insuranceservice;
+package com.mtit.microservice.documentservice.documentservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
