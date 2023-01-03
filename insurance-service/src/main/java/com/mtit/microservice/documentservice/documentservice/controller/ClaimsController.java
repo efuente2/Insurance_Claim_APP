@@ -21,9 +21,6 @@ public class ClaimsController {
         paymentService.newTransaction(paymentRequest);
     }
 
-    @GetMapping("/Claim")
-
-
 
     @GetMapping("/Claim")
     @ResponseStatus(HttpStatus.OK)

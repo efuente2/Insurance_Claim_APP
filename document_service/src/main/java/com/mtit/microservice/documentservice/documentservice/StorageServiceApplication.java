@@ -21,15 +21,15 @@ public class StorageServiceApplication {
 	@Autowired
 	private StorageService service;
 
-	@PostMapping
+	@PostMapping("/upload")
 	public ResponseEntity<?> uploadImage(@RequestParam("file")MultipartFile file) throws IOException {
 		String uploadFile = service.uploadfile(file);
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(uploadFile);
 	}
 
-	@GetMapping
-	public ResponseEntity<?> downloadImage(@PathVariable String fileName) throws IOException {
+	@GetMapping("/getByFileName/{fileName}")
+	public ResponseEntity<?> downloadImage(@PathVariable("filename") String fileName) throws IOException {
 		byte[] downloadFile = service.downloadFile(fileName);
 		return ResponseEntity.status(HttpStatus.OK)
 				.contentType(MediaType.valueOf("application/pdf"))

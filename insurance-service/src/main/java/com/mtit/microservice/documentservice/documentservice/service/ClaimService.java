@@ -4,7 +4,7 @@ import com.mtit.microservice.documentservice.documentservice.dto.ClaimsResponse;
 import com.mtit.microservice.documentservice.documentservice.util.Claim;
 import com.mtit.microservice.documentservice.documentservice.repository.ClaimRepositroy;
 import com.mtit.microservice.documentservice.documentservice.dto.ClaimsRequest;
-import com.mtit.microservice.documentservice.documentservice.dto.ProductResponce;
+import com.mtit.microservice.documentservice.documentservice.dto.FileResponce;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,28 +28,28 @@ public class ClaimService {
                 .date(paymentRequest.getDate())
                 .itemId(paymentRequest.getClaimId())
                 .build();
-        var resposnce  = webClient.build().get()
-                .uri("http://localhost:9080/api/inventory/Product",
-                        uriBuilder -> uriBuilder.queryParam("id", claim.getItemId()).build())
-                .retrieve()
-                .bodyToMono(ProductResponce[].class)
-                .block();
+//        var resposnce  = webClient.build().get()
+//                .uri("http://localhost:9080/api/inventory/Product",
+//                        uriBuilder -> uriBuilder.queryParam("id", claim.getid()).build())
+//                .retrieve()
+//                .bodyToMono(FileResponce[].class)
+//                .block();
+//
+//        boolean check = false;
+//        int number = Integer.parseInt(paymentRequest.getClaimId());
+//
+//        for (int i = 0; i< resposnce.length; i++){
+//            if(resposnce[i].getId() == number){
+//                check = true;
+//            }
+//        }
 
-        boolean check = false;
-        int number = Integer.parseInt(paymentRequest.getClaimId());
-
-        for (int i = 0; i< resposnce.length; i++){
-            if(resposnce[i].getId() == number){
-                check = true;
-            }
-        }
-        if(check){
             claimRepositroy.save(claim);
             log.info("Claim " + claim.getid() + " is saved");
-        }
-        else {
-            log.info("item not in stock");
-        }
+
+//        else {
+//            log.info("Claim was not successfully saved");
+//        }
 //        paymentRepositroy.save(payment);
 //           log.info("Claim " + payment.getid() + " is saved");
     }

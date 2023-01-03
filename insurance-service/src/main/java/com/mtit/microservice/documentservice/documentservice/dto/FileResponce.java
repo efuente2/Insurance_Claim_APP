@@ -10,11 +10,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductResponce {
-    private int id;
+public class FileResponce {
+//    private int id;
     private String name;
-    private String description;
-    private String price;
+//    private String description;
+//    private String price;
 
 
 }
