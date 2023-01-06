@@ -1,4 +1,5 @@
 export class claim{
+    
     constructor(
         name:String,
         email:String,

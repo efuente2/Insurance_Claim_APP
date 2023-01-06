@@ -17,20 +17,19 @@ public class ClaimsController {
 
     @PostMapping("/Claim")
     @ResponseStatus(HttpStatus.CREATED)
-    public void newTransaction(@RequestBody ClaimsRequest paymentRequest){
+    public void newClaim(@RequestBody ClaimsRequest paymentRequest){
         paymentService.newTransaction(paymentRequest);
     }
-
-
+    
     @GetMapping("/Claim")
     @ResponseStatus(HttpStatus.OK)
-    public List<ClaimsResponse> getAllPayments(){
+    public List<ClaimsResponse> getAllClaims(){
         return paymentService.getAllClaims();
     }
 
     @GetMapping("/Claim/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ClaimsResponse getPaymentById(@PathVariable("id") String id){
+    public ClaimsResponse getClaimById(@PathVariable("id") String id){
         return paymentService.getClaimByID(id);
     }
 

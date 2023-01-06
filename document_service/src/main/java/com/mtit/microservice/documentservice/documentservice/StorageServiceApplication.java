@@ -15,7 +15,7 @@ import java.util.List;
 
 @SpringBootApplication
 @RestController
-@RequestMapping("/image")
+//@RequestMapping("/image")
 public class StorageServiceApplication {
 
 	@Autowired

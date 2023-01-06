@@ -4,8 +4,8 @@ import { ClaimsComponent } from './claims/claims.component';
 import { SearchDeleteComponent } from './search-delete/search-delete.component';
 
 const routes: Routes = [
-  {path: "register", component: ClaimsComponent}
-  {path: "search", component: SearchDeleteComponent}
+  {path: "register", component: ClaimsComponent},
+  {path: "search", component: SearchDeleteComponent},
   {path: "", redirectTo:"register", pathMatch:"full"}
 
 

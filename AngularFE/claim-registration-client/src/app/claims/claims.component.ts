@@ -10,7 +10,7 @@ import { ClaimsRegistrationService } from '../claims-registration.service';
 export class ClaimsComponent implements OnInit{
 
 
-  claim: claim = new claim("12","12","12","12","12");
+  claim: claim = new claim("","","","","");
   message:any;
 
   constructor(private service:ClaimsRegistrationService){ }
