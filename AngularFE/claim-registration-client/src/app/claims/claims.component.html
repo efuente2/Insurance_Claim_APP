@@ -17,28 +17,35 @@
                     <div class="form-group">
                         <label for="Name"><span class="req">* </span> Name: <small>This will be your login user
                                 name</small> </label>
-                        <input required type="text" name="name" id="name"
+                        <input required type="text" [(ngModel)]="name" name="name" id="name"
                             class="form-control phone" maxlength="28" placeholder="Enter your fullname..." />
                     </div>
 
                     <div class="form-group">
                         <label for="firstname"><span class="req">* </span> Email: </label>
-                        <!--<input class="form-control" type="text" [(ngModel)]="claim" name="email" id="txt" required
-                            placeholder="Enter valid email address" />-->
+                        <input class="form-control" type="text" [(ngModel)]="email" name="email" id="txt" required
+                            placeholder="Enter valid email address" />
                         <div id="errFirst"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="lastname"><span class="req">* </span> Date : </label>
-                        <!--<input class="form-control" type="text" [(ngModel)]="claim" name="date" id="txt"
-                            placeholder="MM/DD" required />-->
+                        <input class="form-control" type="text" [(ngModel)]="date" name="date" id="txt"
+                            placeholder="MM/DD" required />
+                        <div id="errLast"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastname"><span class="req">* </span> amount : </label>
+                        <input class="form-control" type="text" [(ngModel)]="amount" name="amount" id="txt" 
+                        placeholder="$" required />
                         <div id="errLast"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="email"><span class="req">* </span> ID Number: </label>
-                        <!--<input class="form-control" required type="text" [(ngModel)]="claim" name="domain"
-                            id="email" placeholder="Claim ID #" />-->
+                        <input class="form-control" required type="text" [(ngModel)]="id" name="domain"
+                            id="email" placeholder="Claim ID #" />
                         <div class="status" id="status"></div>
                     </div>
                     <div class="form-group">

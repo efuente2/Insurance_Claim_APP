@@ -1,12 +1,58 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<div class="main-area">
+    <div class="content-area">
+        <div class="header">
+            <h1>Manage Products</h1>
+            <hr>
+        </div>
+        <div class="container">
+            <!--Add product form-->
+            <div class="form-area">
+                <h3>Create Product</h3>
+                <form #claimForm="ngForm" (ngSubmit)="onClaimCreate(claimForm.value)">
+                    <label>Name</label>
+                    <input type="text" name="pName" ngModel>
 
+                    <label>Email</label>
+                    <input type="text" name="email" ngModel>
 
+                    <label>Amount</label>
+                    <input type="text" name="amount" ngModel>
 
-<router-outlet></router-outlet>
+                    <label>Date</label>
+                    <input type="text" name="date" ngModel>
+
+                    <label>Claim ID</label>
+                    <input type="text" name="id" ngModel>
+
+                    <input type="submit" value="Add Product">
+                </form>
+            </div>
+
+            <!--Display product area-->
+            <div class="product-display-area">
+                <h3>All Products</h3>
+                <table id="products">
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>iPhone</td>
+                        <td>iPhone Pro 11</td>
+                        <td>$1299</td>
+                        <td><button class="btn-delete">Delete</button></td>
+                    </tr>
+                </table>
+                <hr>
+                <div class="action-btn-container">
+                    <button class="btn-fetch">Fetch Product</button>
+                    <button class="btn-clear">Clear Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

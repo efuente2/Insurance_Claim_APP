@@ -65,6 +65,7 @@ public class ClaimService {
                 .id(payment.getid())
                 .amount(payment.getAmount())
                 .date(payment.getDate())
+                .claimId(payment.getItemId())
                 .build();
     }
 

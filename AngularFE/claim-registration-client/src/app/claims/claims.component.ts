@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { claim } from '../claim';
+import { Claim } from '../claim';
 import { ClaimsRegistrationService } from '../claims-registration.service';
 
 @Component({
@@ -9,17 +9,25 @@ import { ClaimsRegistrationService } from '../claims-registration.service';
 })
 export class ClaimsComponent implements OnInit{
 
+  name:String = "sdfsef";
+  email:String = " sefsefs";
+  date:String =" sesef";
+  amount:String = " sefsef";
+  id:String=" sefsef";
 
-  claim: claim = new claim("","","","","");
+  
+  //fclaim: Claim = new Claim(" ","","","","");
+  fclaim: Claim = new Claim(this.name,this.email,this.date,this.amount,this.id);
   message:any;
 
+  
   constructor(private service:ClaimsRegistrationService){ }
 
   ngOnInit(){
   }
 
   public registerNow(){
-    let resp=this.service.doRegistration(this.claim);
-    resp.subscribe((data)=>this.message=data)
+    let resp=this.service.doRegistration({ claim: this.fclaim });
+    resp.subscribe((data)=>this.message=data);
   }
 }
