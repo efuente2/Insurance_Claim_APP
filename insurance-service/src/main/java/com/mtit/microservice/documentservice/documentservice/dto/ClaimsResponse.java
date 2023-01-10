@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ClaimsResponse {
     private int id;
+    private String name;
+    private String email;
     private String amount;
     private String date;
     private String claimId;

@@ -23,8 +23,22 @@ public class Claim {
     @Column(name = "date")
     private String date;
 
-    @Column(name = "itemID")
-    public String itemId;
+    @Column(name = "claimId")
+    public String claimId;
+
+    @Column(name = "name")
+    public String name;
+
+    @Column(name = "email")
+    public String email;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 
     public int getid(){
         return id;
@@ -38,7 +52,7 @@ public class Claim {
         return date;
     }
 
-    public String getItemId(){return itemId;}
+    public String getClaimId(){return claimId;}
 
 
 }

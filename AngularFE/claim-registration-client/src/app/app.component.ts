@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { claimExport } from './model/claimModel';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +11,10 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit{
   //title = 'claim-registration-client';
   title = 'AngularHttpRequest';
+
+  selectedFile:any;
+
+  allproducts: claimExport[] = []; 
 
   constructor(private http: HttpClient){
 
@@ -22,10 +28,27 @@ export class AppComponent implements OnInit{
     this.fetchClaims();
   }
 
-  onClaimCreate(claim: {cName: string, email: string, amount: string, date: string, id: string }){
+  onFileSelected(event:any){
+    console.log(event);
+
+    this.selectedFile = event.target.files[0];
+
+    console.log('file', this.selectedFile);
+
+  }
+
+  onUpload(){
+    let formData = new FormData();
+    formData.set("file", this.selectedFile)
+    this.http.post('http://localhost:9080/upload',formData)
+    .subscribe((res) => {
+        console.log(res);})
+  }
+
+  onClaimCreate(claim: {name: string, email: string, amount: string, date: string, claimId: string }){
     console.log(claim);
     const headers = new HttpHeaders({'myHeaders': 'proacademy'});
-    this.http.post(
+    this.http.post<{name: string}>(
       'http://localhost:9090/Claim',
       claim,{headers: headers})
       .subscribe((res) => {
@@ -34,9 +57,20 @@ export class AppComponent implements OnInit{
   }
 
   private fetchClaims(){
-    this.http.get('http://localhost:9090/Claim')
-    .subscribe((res) => {
-      console.log(res);
+    this.http.get<{[key: string]: claimExport}>('http://localhost:9090/Claim')
+    .pipe(map((res) => {
+      const products = [];
+        for(const key in res){
+          if(res.hasOwnProperty(key)){
+          products.push({...res[key], id: key})
+          }
+          
+        }
+        return products;
+    }))
+    .subscribe((products) => {
+      console.log(products);
+      this.allproducts = products;
     })
   }
 }

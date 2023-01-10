@@ -15,6 +15,7 @@ import java.util.List;
 
 @SpringBootApplication
 @RestController
+@CrossOrigin("*")
 //@RequestMapping("/image")
 public class StorageServiceApplication {
 

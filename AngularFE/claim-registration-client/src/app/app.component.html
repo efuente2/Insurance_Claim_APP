@@ -1,16 +1,16 @@
 <div class="main-area">
     <div class="content-area">
         <div class="header">
-            <h1>Manage Products</h1>
+            <h1>Manage Claims</h1>
             <hr>
         </div>
         <div class="container">
             <!--Add product form-->
             <div class="form-area">
-                <h3>Create Product</h3>
+                <h3>Create Claim</h3>
                 <form #claimForm="ngForm" (ngSubmit)="onClaimCreate(claimForm.value)">
                     <label>Name</label>
-                    <input type="text" name="pName" ngModel>
+                    <input type="text" name="name" ngModel>
 
                     <label>Email</label>
                     <input type="text" name="email" ngModel>
@@ -22,7 +22,11 @@
                     <input type="text" name="date" ngModel>
 
                     <label>Claim ID</label>
-                    <input type="text" name="id" ngModel>
+                    <input type="text" name="claimId" ngModel>
+
+                    <label>File Upload</label>
+                    <input type="file" (change)="onFileSelected($event)">
+                    <button type = "button" (click)="onUpload()">Upload</button>
 
                     <input type="submit" value="Add Product">
                 </form>
@@ -35,15 +39,19 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Description</th>
-                        <th>Price</th>
+                        <th>Email</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Claim ID</th>
                         <th></th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>iPhone</td>
-                        <td>iPhone Pro 11</td>
-                        <td>$1299</td>
+                    <tr *ngFor="let prod of allproducts; index as i">
+                        <td>{{i + 1}}</td>
+                        <td>{{prod.name}}</td>
+                        <td>{{prod.email}}</td>
+                        <td>{{prod.amount}}</td>
+                        <td>{{prod.date}}</td>
+                        <td>{{prod.claimId}}</td>
                         <td><button class="btn-delete">Delete</button></td>
                     </tr>
                 </table>

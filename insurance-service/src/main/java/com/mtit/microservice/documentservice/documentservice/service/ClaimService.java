@@ -4,7 +4,6 @@ import com.mtit.microservice.documentservice.documentservice.dto.ClaimsResponse;
 import com.mtit.microservice.documentservice.documentservice.util.Claim;
 import com.mtit.microservice.documentservice.documentservice.repository.ClaimRepositroy;
 import com.mtit.microservice.documentservice.documentservice.dto.ClaimsRequest;
-import com.mtit.microservice.documentservice.documentservice.dto.FileResponce;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,9 +23,11 @@ public class ClaimService {
 
     public void newTransaction (ClaimsRequest paymentRequest){
         Claim claim = Claim.builder()
+                .name(paymentRequest.getName())
+                .email(paymentRequest.getEmail())
                 .amount(paymentRequest.getAmount())
                 .date(paymentRequest.getDate())
-                .itemId(paymentRequest.getClaimId())
+                .claimId(paymentRequest.getClaimId())
                 .build();
 //        var resposnce  = webClient.build().get()
 //                .uri("http://localhost:9080/api/inventory/Product",
@@ -63,9 +64,11 @@ public class ClaimService {
     private ClaimsResponse mapToClaimResponse(Claim payment) {
         return ClaimsResponse.builder()
                 .id(payment.getid())
+                .name(payment.getName())
+                .email(payment.getEmail())
                 .amount(payment.getAmount())
                 .date(payment.getDate())
-                .claimId(payment.getItemId())
+                .claimId(payment.getClaimId())
                 .build();
     }
 
