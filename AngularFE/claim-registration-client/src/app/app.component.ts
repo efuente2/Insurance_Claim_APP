@@ -1,5 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpEvent, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { claimExport } from './model/claimModel';
 
@@ -12,9 +13,11 @@ export class AppComponent implements OnInit{
   //title = 'claim-registration-client';
   title = 'AngularHttpRequest';
 
-  selectedFile:any;
+  selectedFile: File[] = [];
 
   allproducts: claimExport[] = []; 
+
+  filenames: string[] = [];
 
   constructor(private http: HttpClient){
 
@@ -31,7 +34,8 @@ export class AppComponent implements OnInit{
   onFileSelected(event:any){
     console.log(event);
 
-    this.selectedFile = event.target.files[0];
+    //this.selectedFile = event.target.files[0];
+    this.selectedFile= [...event.target.files];
 
     console.log('file', this.selectedFile);
 
@@ -39,10 +43,16 @@ export class AppComponent implements OnInit{
 
   onUpload(){
     let formData = new FormData();
-    formData.set("file", this.selectedFile)
+    for (const file of this.selectedFile) { formData.append('files', file, file.name)}
+    //formData.set("files", this.selectedFile)
     this.http.post('http://localhost:9080/upload',formData)
     .subscribe((res) => {
-        console.log(res);})
+        console.log(res);
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }  
+        );
   }
 
   onClaimCreate(claim: {name: string, email: string, amount: string, date: string, claimId: string }){
@@ -73,5 +83,24 @@ export class AppComponent implements OnInit{
       this.allproducts = products;
     })
   }
+
+  download(fileName: string): Observable<HttpEvent<Blob>> {
+    return this.http.get(`http://localhost:9080/${fileName}`, {
+      observe: 'events',
+      responseType: 'blob'
+    });
+  }
+
+  onDownloadFiles(filename: string): void{
+    this.download(filename).subscribe(
+    event => {
+      console.log(event);
+    },
+    (error: HttpErrorResponse) => {
+      console.log(error);
+    });
+  }
+
+
 }
 
