@@ -21,11 +21,11 @@
                     <label>Date</label>
                     <input type="text" name="date" ngModel>
 
-                    <label>Claim ID</label>
+                    <label>File Name</label>
                     <input type="text" name="claimId" ngModel>
 
                     <label>File Upload</label>
-                    <input type="file" (change)="onFileSelected($event)">
+                    <input type="file" (change)="onFileSelected($event)" name = 'files' multiple>
                     <button type = "button" (click)="onUpload()">Upload</button>
 
                     <input type="submit" value="Add Product">
@@ -51,7 +51,9 @@
                         <td>{{prod.email}}</td>
                         <td>{{prod.amount}}</td>
                         <td>{{prod.date}}</td>
-                        <td>{{prod.claimId}}</td>
+                        <td><a (click)="onDownloadFiles(prod.claimId)" class="list-group-item list-group-item-success" style="cursor: pointer;">
+                        {{prod.claimId}}</a>
+                    </td>
                         <td><button class="btn-delete">Delete</button></td>
                     </tr>
                 </table>

@@ -46,14 +46,16 @@ export class AppComponent implements OnInit{
     for (const file of this.selectedFile) { formData.append('files', file, file.name)}
     //formData.set("files", this.selectedFile)
     this.http.post('http://localhost:9080/upload',formData)
-    .subscribe((res) => {
-        console.log(res);
+    .subscribe(
+      event => {
+        console.log(event);
       },
       (error: HttpErrorResponse) => {
         console.log(error);
       }  
         );
   }
+
 
   onClaimCreate(claim: {name: string, email: string, amount: string, date: string, claimId: string }){
     console.log(claim);
@@ -95,6 +97,10 @@ export class AppComponent implements OnInit{
     this.download(filename).subscribe(
     event => {
       console.log(event);
+      let file = new Blob([event as unknown as BlobPart], { type: 'application/pdf' });            
+      var fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+
     },
     (error: HttpErrorResponse) => {
       console.log(error);

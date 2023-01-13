@@ -48,7 +48,6 @@ public class StorageServiceApplication {
 		return ResponseEntity.status(HttpStatus.OK)
 				.contentType(MediaType.valueOf("application/pdf"))
 				.headers(headers)
-				//.contentType(MediaType.valueOf("application/'msword'"))
 				.body(downloadFile);
 	}
 
