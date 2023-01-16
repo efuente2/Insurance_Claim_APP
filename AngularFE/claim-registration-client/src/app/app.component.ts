@@ -86,20 +86,24 @@ export class AppComponent implements OnInit{
     })
   }
 
-  download(fileName: string): Observable<HttpEvent<Blob>> {
+  download(fileName: string) {
     return this.http.get(`http://localhost:9080/${fileName}`, {
-      observe: 'events',
+      observe: 'response',
       responseType: 'blob'
     });
   }
 
   onDownloadFiles(filename: string): void{
     this.download(filename).subscribe(
-    event => {
-      console.log(event);
-      let file = new Blob([event as unknown as BlobPart], { type: 'application/pdf' });            
-      var fileURL = URL.createObjectURL(file);
-      window.open(fileURL);
+    response => {
+      console.log(response);
+      let fileName = response.headers.get('Content-Disposition')
+      ?.split(';')[1].split('=')[1];
+      let blob: Blob=response.body as Blob;
+      let a = document.createElement('a');
+      a.download=fileName;
+      a.href = window.URL.createObjectURL(blob);
+      a.click();
 
     },
     (error: HttpErrorResponse) => {

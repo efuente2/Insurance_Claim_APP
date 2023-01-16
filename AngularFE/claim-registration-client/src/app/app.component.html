@@ -43,7 +43,7 @@
                         <th>Amount</th>
                         <th>Date</th>
                         <th>Claim ID</th>
-                        <th></th>
+                        <th>Approve</th>
                     </tr>
                     <tr *ngFor="let prod of allproducts; index as i">
                         <td>{{i + 1}}</td>
@@ -54,7 +54,7 @@
                         <td><a (click)="onDownloadFiles(prod.claimId)" class="list-group-item list-group-item-success" style="cursor: pointer;">
                         {{prod.claimId}}</a>
                     </td>
-                        <td><button class="btn-delete">Delete</button></td>
+                        <td><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" class="btn-delete"></td>
                     </tr>
                 </table>
                 <hr>
