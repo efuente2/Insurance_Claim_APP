@@ -16,6 +16,11 @@ public class ClaimsController {
     @Autowired
     private ClaimService paymentService;
 
+    @GetMapping("/")
+    public String login(){
+        return "Welcome to Claims Service";
+    }
+
     @PostMapping("/Claim")
     @ResponseStatus(HttpStatus.CREATED)
     public void newClaim(@RequestBody ClaimsRequest paymentRequest){
