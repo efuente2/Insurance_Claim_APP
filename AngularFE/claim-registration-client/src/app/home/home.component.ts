@@ -2,14 +2,15 @@ import { HttpClient, HttpErrorResponse, HttpEvent, HttpHeaders, HttpResponse } f
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { claimExport } from './model/claimModel';
+import { claimExport } from '../model/claimModel';
+
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class AppComponent implements OnInit{
+export class HomeComponent implements OnInit{
   //title = 'claim-registration-client';
   title = 'AngularHttpRequest';
 
@@ -19,26 +20,9 @@ export class AppComponent implements OnInit{
 
   filenames: string[] = [];
 
-  // uname: string;
-  // pword: string;
-  // message: any; 
-
   constructor(private http: HttpClient){
 
   }
-
-  // public login(username: String, password: String){
-  //   const headers = new HttpHeaders({AUthorization: 'Basic'+btoa(username+':'+password)});
-  //   return this.http.get("http://localhost:9090/", {headers,responseType: 'text' as 'json'});
-
-  // }
-
-  // dologin(){
-  //   let resp = this.login(this.uname, this.pword);
-  //   resp.subscribe(data=>{
-  //     console.log(data)
-  //   })
-  // }
 
   ngOnInit(){
     this.fetchClaims();
@@ -128,6 +112,4 @@ export class AppComponent implements OnInit{
     });
   }
 
-
 }
-

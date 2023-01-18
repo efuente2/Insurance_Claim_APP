@@ -1,0 +1,69 @@
+<div class="main-area">
+    <div class="content-area">
+        <div class="header">
+            <h1>Manage Claims</h1>
+            <hr>
+        </div>
+        <div class="container">
+            <!--Add product form-->
+            <div class="form-area">
+                <h3>Create Claim</h3>
+                <form #claimForm="ngForm" (ngSubmit)="onClaimCreate(claimForm.value)">
+                    <label>Name</label>
+                    <input type="text" name="name" ngModel>
+
+                    <label>Email</label>
+                    <input type="text" name="email" ngModel>
+
+                    <label>Amount</label>
+                    <input type="text" name="amount" ngModel>
+
+                    <label>Date</label>
+                    <input type="text" name="date" ngModel>
+
+                    <label>File Name</label>
+                    <input type="text" name="claimId" ngModel>
+
+                    <label>File Upload</label>
+                    <input type="file" (change)="onFileSelected($event)" name='files' multiple>
+                    <button type="button" (click)="onUpload()">Upload</button>
+
+                    <input type="submit" value="Add Product">
+                </form>
+            </div>
+
+            <!--Display product area-->
+            <div class="product-display-area">
+                <h3>All Products</h3>
+                <table id="products">
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Claim ID</th>
+                        <th>Approve</th>
+                    </tr>
+                    <tr *ngFor="let prod of allproducts; index as i">
+                        <td>{{i + 1}}</td>
+                        <td>{{prod.name}}</td>
+                        <td>{{prod.email}}</td>
+                        <td>{{prod.amount}}</td>
+                        <td>{{prod.date}}</td>
+                        <td><a (click)="onDownloadFiles(prod.claimId)" class="list-group-item list-group-item-success"
+                                style="cursor: pointer;">
+                                {{prod.claimId}}</a>
+                        </td>
+                        <td><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" class="btn-delete"></td>
+                    </tr>
+                </table>
+                <hr>
+                <div class="action-btn-container">
+                    <button class="btn-fetch">Fetch Product</button>
+                    <button class="btn-clear">Clear Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -16,7 +16,7 @@ public class ClaimsController {
     @Autowired
     private ClaimService paymentService;
 
-    @GetMapping("/")
+    @GetMapping("/login")
     public String login(){
         return "Welcome to Claims Service";
     }

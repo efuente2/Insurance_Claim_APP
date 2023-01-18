@@ -8,12 +8,17 @@ import { ClaimsComponent } from './claims/claims.component';
 import { SearchDeleteComponent } from './search-delete/search-delete.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { RestapiService } from './restapi.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClaimsComponent,
-    SearchDeleteComponent
+    SearchDeleteComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +26,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [ClaimsRegistrationService],
+  providers: [ClaimsRegistrationService, RestapiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
