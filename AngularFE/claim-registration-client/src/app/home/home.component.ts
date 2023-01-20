@@ -14,6 +14,8 @@ import { claimExport } from '../model/claimModel';
 export class HomeComponent implements OnInit{
   title = 'AngularHttpRequest';
 
+  fileName: string;
+
   selectedFile: File[] = [];
 
   allproducts: claimExport[] = []; 
@@ -43,6 +45,10 @@ export class HomeComponent implements OnInit{
 
     console.log('file', this.selectedFile);
 
+    for(const file of this.selectedFile){
+      this.fileName = file.name;
+    }
+
   }
 
   onUpload(){
@@ -61,7 +67,8 @@ export class HomeComponent implements OnInit{
 
 
   onClaimCreate(claim: {name: string, email: string, amount: string, date: string, claimId: string, status: string}){
-    claim.status = 'NOTAPPROVED'
+    claim.status = 'NOTAPPROVED';
+    claim.claimId = this.fileName;
     console.log(claim);
     const headers = new HttpHeaders({'myHeaders': 'proacademy'});
     this.http.post<{name: string}>(
