@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpEvent, HttpHeaders, HttpResponse } f
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { approveExport } from '../model/approveModel';
 import { claimExport } from '../model/claimModel';
 
 
@@ -11,7 +12,6 @@ import { claimExport } from '../model/claimModel';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
-  //title = 'claim-registration-client';
   title = 'AngularHttpRequest';
 
   selectedFile: File[] = [];
@@ -19,6 +19,10 @@ export class HomeComponent implements OnInit{
   allproducts: claimExport[] = []; 
 
   filenames: string[] = [];
+
+  approveStatus: approveExport[] = [
+    {id: 1, select: false},
+  ]
 
   constructor(private http: HttpClient){
 
@@ -35,7 +39,6 @@ export class HomeComponent implements OnInit{
   onFileSelected(event:any){
     console.log(event);
 
-    //this.selectedFile = event.target.files[0];
     this.selectedFile= [...event.target.files];
 
     console.log('file', this.selectedFile);
@@ -45,7 +48,6 @@ export class HomeComponent implements OnInit{
   onUpload(){
     let formData = new FormData();
     for (const file of this.selectedFile) { formData.append('files', file, file.name)}
-    //formData.set("files", this.selectedFile)
     this.http.post('http://localhost:9080/upload',formData)
     .subscribe(
       event => {
@@ -58,7 +60,8 @@ export class HomeComponent implements OnInit{
   }
 
 
-  onClaimCreate(claim: {name: string, email: string, amount: string, date: string, claimId: string }){
+  onClaimCreate(claim: {name: string, email: string, amount: string, date: string, claimId: string, status: string}){
+    claim.status = 'NOTAPPROVED'
     console.log(claim);
     const headers = new HttpHeaders({'myHeaders': 'proacademy'});
     this.http.post<{name: string}>(
@@ -110,6 +113,19 @@ export class HomeComponent implements OnInit{
     (error: HttpErrorResponse) => {
       console.log(error);
     });
+  }
+
+  
+  
+  isApproved(status: string, id: number){
+    const data = {'status': 'APPROVED'}
+    if(status === 'NOTAPPROVED'){
+          //status = 'APPROVED';
+          this.http.patch(`http://localhost:9090/Claim/29`, data)
+          .subscribe((res) => {
+            console.log(res);
+          })
+        }
   }
 
 }

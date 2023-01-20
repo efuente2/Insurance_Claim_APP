@@ -17,4 +17,5 @@ public class ClaimsResponse {
     private String amount;
     private String date;
     private String claimId;
+    private String status;
 }

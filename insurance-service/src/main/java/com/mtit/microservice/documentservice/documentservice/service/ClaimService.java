@@ -7,9 +7,12 @@ import com.mtit.microservice.documentservice.documentservice.dto.ClaimsRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -23,36 +26,19 @@ public class ClaimService {
 
     public void newTransaction (ClaimsRequest paymentRequest){
         Claim claim = Claim.builder()
+                .id(paymentRequest.getId())
                 .name(paymentRequest.getName())
                 .email(paymentRequest.getEmail())
                 .amount(paymentRequest.getAmount())
                 .date(paymentRequest.getDate())
                 .claimId(paymentRequest.getClaimId())
+                .status(paymentRequest.getStatus())
                 .build();
-//        var resposnce  = webClient.build().get()
-//                .uri("http://localhost:9080/api/inventory/Product",
-//                        uriBuilder -> uriBuilder.queryParam("id", claim.getid()).build())
-//                .retrieve()
-//                .bodyToMono(FileResponce[].class)
-//                .block();
-//
-//        boolean check = false;
-//        int number = Integer.parseInt(paymentRequest.getClaimId());
-//
-//        for (int i = 0; i< resposnce.length; i++){
-//            if(resposnce[i].getId() == number){
-//                check = true;
-//            }
-//        }
+
 
             claimRepositroy.save(claim);
-            log.info("Claim " + claim.getid() + " is saved");
+            log.info("Claim " + claim.getId() + " is saved");
 
-//        else {
-//            log.info("Claim was not successfully saved");
-//        }
-//        paymentRepositroy.save(payment);
-//           log.info("Claim " + payment.getid() + " is saved");
     }
 
     public List<ClaimsResponse> getAllClaims(){
@@ -63,19 +49,33 @@ public class ClaimService {
 
     private ClaimsResponse mapToClaimResponse(Claim payment) {
         return ClaimsResponse.builder()
-                .id(payment.getid())
+                .id(payment.getId())
                 .name(payment.getName())
                 .email(payment.getEmail())
                 .amount(payment.getAmount())
                 .date(payment.getDate())
                 .claimId(payment.getClaimId())
+                .status(payment.getStatus())
                 .build();
     }
 
-    public ClaimsResponse getClaimByID(String id){
-        int finalId = Integer.parseInt(id);
-        Optional<Claim> paymentList = claimRepositroy.findById((long)finalId);
-        return (ClaimsResponse) paymentList.stream().map(this::mapToClaimResponse).toList();
+    public ClaimsResponse getClaimByID(int id){
+        //int finalId = Integer.parseInt(id);
+        Optional<Claim> paymentList = claimRepositroy.findById(id);
+        //return (ClaimsResponse) paymentList.stream().map(this::mapToClaimResponse).toList();
+        return paymentList.map(this::mapToClaimResponse).orElse(null);
     }
 
+    public Claim updateProductsByFields(int id, Map<String, Object> fields) {
+        Optional<Claim> existingClaim = claimRepositroy.findById(id);
+        if(existingClaim.isPresent()){
+        fields.forEach((key,value) ->{
+            Field field = ReflectionUtils.findField(Claim.class, key);
+            field.setAccessible(true);
+            ReflectionUtils.setField(field, existingClaim.get(), value);
+        });
+        return claimRepositroy.save(existingClaim.get());
+    }
+        return null;
+    }
 }

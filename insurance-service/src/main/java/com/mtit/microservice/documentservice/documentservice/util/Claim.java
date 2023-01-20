@@ -32,17 +32,18 @@ public class Claim {
     @Column(name = "email")
     public String email;
 
-    public String getName() {
-        return name;
-    }
+    @Column(name = "status")
+    public String status;
 
-    public String getEmail() {
-        return email;
-    }
+    public String getStatus() {return status;}
 
-    public int getid(){
-        return id;
-    }
+    public void setStatus(String status) {this.status = status;}
+
+    public String getName() {return name;}
+
+    public String getEmail() {return email;}
+
+    public int getId(){return id;}
 
     public  String getAmount(){
         return amount;
@@ -53,6 +54,7 @@ public class Claim {
     }
 
     public String getClaimId(){return claimId;}
+
 
 
 }

@@ -63,7 +63,8 @@
               "browserTarget": "claim-registration-client:build:production"
             },
             "development": {
-              "browserTarget": "claim-registration-client:build:development"
+              "browserTarget": "claim-registration-client:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

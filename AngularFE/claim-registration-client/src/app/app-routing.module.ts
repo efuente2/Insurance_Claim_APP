@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: "register", component: ClaimsComponent},
   {path: "home", component: HomeComponent},
   {path: "search", component: SearchDeleteComponent},
-  {path: "", redirectTo:"home", pathMatch:"full"}
+  {path: "", redirectTo:"login", pathMatch:"full"}
 
 
 ];

@@ -19,26 +19,10 @@ export class AppComponent implements OnInit{
 
   filenames: string[] = [];
 
-  // uname: string;
-  // pword: string;
-  // message: any; 
-
   constructor(private http: HttpClient){
 
   }
 
-  // public login(username: String, password: String){
-  //   const headers = new HttpHeaders({AUthorization: 'Basic'+btoa(username+':'+password)});
-  //   return this.http.get("http://localhost:9090/", {headers,responseType: 'text' as 'json'});
-
-  // }
-
-  // dologin(){
-  //   let resp = this.login(this.uname, this.pword);
-  //   resp.subscribe(data=>{
-  //     console.log(data)
-  //   })
-  // }
 
   ngOnInit(){
     this.fetchClaims();

@@ -43,7 +43,7 @@
                         <th>Amount</th>
                         <th>Date</th>
                         <th>Claim ID</th>
-                        <th>Approve</th>
+                        <th>Approve Status</th>
                     </tr>
                     <tr *ngFor="let prod of allproducts; index as i">
                         <td>{{i + 1}}</td>
@@ -55,14 +55,19 @@
                                 style="cursor: pointer;">
                                 {{prod.claimId}}</a>
                         </td>
-                        <td><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" class="btn-delete"></td>
+                        <td>
+                            <div *ngIf="prod.status==='NOTAPPROVED'">
+                                <a (click)="isApproved(prod.status, prod.id)">Send for approval</a>
+                            </div>
+                            <div *ngIf="prod.status==='APPROVED'">
+                                {{prod.status}}
+                            </div>
+                            
+                        
+                        </td>
                     </tr>
                 </table>
                 <hr>
-                <div class="action-btn-container">
-                    <button class="btn-fetch">Fetch Product</button>
-                    <button class="btn-clear">Clear Product</button>
-                </div>
             </div>
         </div>
     </div>
