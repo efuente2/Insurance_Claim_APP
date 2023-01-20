@@ -50,9 +50,19 @@ select {
     box-sizing: border-box;
 }
 
+input[type=file],
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;}
+
 input[type=submit] {
     width: 30%;
-    background-color: #48C9B0;
+    background-color:  #3498DB;
     color: white;
     padding: 14px 20px;
     margin: 8px 5px;
@@ -96,6 +106,11 @@ button {
     border: none;
     padding: 8px 15px;
     margin: 0px 5px;
+    background-color: #3498DB;
+    color: white;
+}
+button:hover{
+    background-color: #1ABC9C;
 }
 
 .btn-delete {

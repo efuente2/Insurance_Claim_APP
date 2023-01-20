@@ -70,6 +70,8 @@ export class HomeComponent implements OnInit{
       .subscribe((res) => {
         console.log(res);
     });
+
+    window.location.reload();
   }
 
   private fetchClaims(){
@@ -78,7 +80,7 @@ export class HomeComponent implements OnInit{
       const products = [];
         for(const key in res){
           if(res.hasOwnProperty(key)){
-          products.push({...res[key], id: key})
+          products.push({...res[key]})
           }
           
         }
@@ -120,12 +122,13 @@ export class HomeComponent implements OnInit{
   isApproved(status: string, id: number){
     const data = {'status': 'APPROVED'}
     if(status === 'NOTAPPROVED'){
-          //status = 'APPROVED';
-          this.http.patch(`http://localhost:9090/Claim/29`, data)
+          this.http.patch(`http://localhost:9090/Claim/${id}`, data)
           .subscribe((res) => {
             console.log(res);
           })
         }
+
+        window.location.reload();
   }
 
 }

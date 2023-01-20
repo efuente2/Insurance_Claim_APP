@@ -26,12 +26,12 @@ public class ClaimsController {
     @PostMapping("/Claim")
     @ResponseStatus(HttpStatus.CREATED)
     public void newClaim(@RequestBody ClaimsRequest paymentRequest){
-        paymentService.newTransaction(paymentRequest);
+            paymentService.newTransaction(paymentRequest);
     }
     
     @GetMapping("/Claim")
     @ResponseStatus(HttpStatus.OK)
-    public List<ClaimsResponse> getAllClaims(){
+    public List<Claim> getAllClaims(){
         return paymentService.getAllClaims();
     }
 

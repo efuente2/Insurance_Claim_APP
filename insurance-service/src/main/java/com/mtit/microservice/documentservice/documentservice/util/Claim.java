@@ -35,7 +35,12 @@ public class Claim {
     @Column(name = "status")
     public String status;
 
+    //    @Column(name = "UUID")
+    //    private int UUID;
+
     public String getStatus() {return status;}
+
+    //public int getUUID() {return UUID;}
 
     public void setStatus(String status) {this.status = status;}
 

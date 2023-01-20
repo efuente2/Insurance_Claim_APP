@@ -14,6 +14,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -26,7 +27,7 @@ public class ClaimService {
 
     public void newTransaction (ClaimsRequest paymentRequest){
         Claim claim = Claim.builder()
-                .id(paymentRequest.getId())
+                //.id(paymentRequest.getId())
                 .name(paymentRequest.getName())
                 .email(paymentRequest.getEmail())
                 .amount(paymentRequest.getAmount())
@@ -41,13 +42,17 @@ public class ClaimService {
 
     }
 
-    public List<ClaimsResponse> getAllClaims(){
+    public List<Claim> getAllClaims(){
         List<Claim> paymentList = claimRepositroy.findAll();
 
-        return paymentList.stream().map(this::mapToClaimResponse).toList();
+        return paymentList;
+
+        //return paymentList.stream().map(this::mapToClaimResponse).toList();
     }
 
     private ClaimsResponse mapToClaimResponse(Claim payment) {
+        log.info("Claim " + payment.getId() + " was retrieved");
+
         return ClaimsResponse.builder()
                 .id(payment.getId())
                 .name(payment.getName())

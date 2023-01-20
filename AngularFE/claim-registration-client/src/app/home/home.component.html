@@ -25,16 +25,18 @@
                     <input type="text" name="claimId" ngModel>
 
                     <label>File Upload</label>
-                    <input type="file" (change)="onFileSelected($event)" name='files' multiple>
-                    <button type="button" (click)="onUpload()">Upload</button>
+                    <div>
+                        <input type="file" (change)="onFileSelected($event)" name='files' multiple>
+                    </div>
+                    
 
-                    <input type="submit" value="Add Product">
+                    <input type="submit" value="Submit Claim" (click)="onUpload()">
                 </form>
             </div>
 
             <!--Display product area-->
             <div class="product-display-area">
-                <h3>All Products</h3>
+                <h3>All Claims</h3>
                 <table id="products">
                     <tr>
                         <th>#</th>
@@ -57,10 +59,10 @@
                         </td>
                         <td>
                             <div *ngIf="prod.status==='NOTAPPROVED'">
-                                <a (click)="isApproved(prod.status, prod.id)">Send for approval</a>
+                                <button (click)="isApproved(prod.status, prod.id)">Send for approval</button>
                             </div>
                             <div *ngIf="prod.status==='APPROVED'">
-                                {{prod.status}}
+                                <b>{{prod.status}}</b>
                             </div>
                             
                         
